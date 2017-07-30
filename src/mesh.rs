@@ -6,7 +6,6 @@
 // <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
-
 use std::collections::hash_map;
 use std::{iter, slice};
 use {accessor, extensions, json, material};
@@ -74,6 +73,18 @@ pub enum Indices {
     U32(Iter<u32>),
 }
 
+impl Indices {
+    /// Map to u32 indices, converting the actual index type if necessary
+    pub fn map_u32<I, F>(&self) -> Box<iter::Map<Iter<I>, fn(i: I)->u32>> {
+    // pub fn map_u32<'a>(&self) -> impl iter::Iterator<Item=&'a u32> {
+        Box::new(match *self {
+            Indices::U8(iter) => iter.map(|x| x as u32),
+            Indices::U16(iter) => iter.map(|x| x as u32),
+            Indices::U32(iter) => iter.map(|x| x),
+        })
+    }
+}
+
 /// Vertex joints.
 /// Refer to the documentation on morph targets and skins for more
 /// information.
@@ -83,7 +94,7 @@ pub enum Joints {
     /// Refer to the documentation on morph targets and skins for more
     /// information.
     U8(Iter<[u8; 4]>),
-    
+
     /// Joints of type `[u16; 4]`.
     /// Refer to the documentation on morph targets and skins for more
     /// information.
@@ -374,7 +385,7 @@ impl<'a> Primitive<'a> {
         self.find_accessor_with_semantic(Semantic::Joints(set))
             .map(|accessor| Joints::from_accessor(accessor))
     }
-    
+
     /// Returns the joint weights of the given set.
     pub fn weights(&self, set: u32) -> Option<Weights> {
         self.find_accessor_with_semantic(Semantic::Weights(set))
@@ -388,7 +399,7 @@ impl<'a> Primitive<'a> {
             Indices::from_accessor(accessor)
         })
     }
-    
+
     /// Returns the primitive positions.
     pub fn positions(&self) -> Option<Positions> {
         self.find_accessor_with_semantic(Semantic::Positions)
@@ -470,7 +481,7 @@ impl Iterator for Normals {
         self.0.next()
     }
 }
- 
+
 impl Iterator for NormalDisplacements {
     type Item = [f32; 3];
     fn next(&mut self) -> Option<Self::Item> {

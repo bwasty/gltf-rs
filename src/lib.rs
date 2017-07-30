@@ -8,6 +8,7 @@
 // except according to those terms.
 
 #![deny(missing_docs)]
+#![feature(conservative_impl_trait)]
 
 //! glTF 2.0 loader
 //!
