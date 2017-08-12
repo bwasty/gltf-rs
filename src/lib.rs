@@ -70,7 +70,7 @@
 //!
 //! [`Source`]: trait.Source.html
 //! [`Loaded`]: struct.Loaded.html
-//! ```
+//! ```rust,ignore
 //! # use gltf::json;
 //! # use gltf::Gltf;
 //! # fn run() -> Result<(), Box<std::error::Error>> {

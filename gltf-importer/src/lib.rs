@@ -9,11 +9,11 @@
 
 //! The reference loader implementation for the `gltf` crate.
 //!
-//! # Examples 
+//! # Examples
 //!
 //! ### Importing some `glTF` 2.0
 //!
-//! ```rust
+//! ```rust,ignore
 //! # #[allow(unused_variables)]
 //! let path = "path/to/asset.gltf";
 //! # let path = "../examples/Box.gltf";
@@ -110,7 +110,7 @@ struct ChunkInfo {
     /// Either `b"JSON"` or `b"BIN\0"`.
     kind: [u8; 4],
 
-    // Data follows... 
+    // Data follows...
 }
 
 /// Represents a subset of `Importer::glb`.

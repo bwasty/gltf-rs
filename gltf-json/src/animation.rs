@@ -87,21 +87,21 @@ pub struct Animation {
     /// Extension specific data.
     #[serde(default)]
     pub extensions: extensions::animation::Animation,
-    
+
     /// Optional application specific data.
     #[serde(default)]
     pub extras: Extras,
-    
+
     /// An array of channels, each of which targets an animation's sampler at a
     /// node's property.
     ///
     /// Different channels of the same animation must not have equal targets.
     pub channels: Vec<Channel>,
-    
+
     /// Optional user-defined name for this object.
     #[cfg(feature = "names")]
     pub name: Option<String>,
-    
+
     /// An array of samplers that combine input and output accessors with an
     /// interpolation algorithm to define a keyframe graph (but not its target).
     pub samplers: Vec<Sampler>,
@@ -113,14 +113,14 @@ pub struct Channel {
     /// The index of a sampler in this animation used to compute the value for the
     /// target.
     pub sampler: Index<Sampler>,
-    
+
     /// The index of the node and TRS property to target.
     pub target: Target,
-    
+
     /// Extension specific data.
     #[serde(default)]
     pub extensions: extensions::animation::Channel,
-    
+
     /// Optional application specific data.
     #[serde(default)]
     pub extras: Extras,
@@ -132,14 +132,14 @@ pub struct Target {
     /// Extension specific data.
     #[serde(default)]
     pub extensions: extensions::animation::Target,
-    
+
     /// Optional application specific data.
     #[serde(default)]
     pub extras: Extras,
-    
+
     /// The index of the node to target.
     pub node: Index<scene::Node>,
-    
+
     /// The name of the node's TRS property to modify or the 'weights' of the
     /// morph targets it instantiates.
     pub path: Checked<TrsProperty>,
@@ -151,24 +151,24 @@ pub struct Sampler {
     /// Extension specific data.
     #[serde(default)]
     pub extensions: extensions::animation::Sampler,
-    
+
     /// Optional application specific data.
     #[serde(default)]
     pub extras: Extras,
-    
+
     /// The index of an accessor containing keyframe input values, e.g., time.
     pub input: Index<accessor::Accessor>,
-    
+
     /// The interpolation algorithm.
     #[serde(default)]
     pub interpolation: Checked<InterpolationAlgorithm>,
-    
+
     /// The index of an accessor containing keyframe output values.
     pub output: Index<accessor::Accessor>,
 }
 
 impl Validate for Animation {
-    fn validate_minimally<P, R>(&self, root: &Root, path: P, mut report: &mut R)
+    fn validate_minimally<P, R>(&self, root: &Root, path: P, report: &mut R)
     where
         P: Fn() -> Path,
         R: FnMut(&Fn() -> Path, Error),

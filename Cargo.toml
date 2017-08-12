@@ -26,6 +26,9 @@ default = []
 extras = ["gltf-json/extras"]
 names = ["gltf-json/names"]
 
+[workspace]
+members = ["gltf-derive", "gltf-json", "gltf-importer"]
+
 [[example]]
 name = "gltf-display"
 path = "examples/display/main.rs"

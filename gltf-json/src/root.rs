@@ -33,18 +33,18 @@ pub struct Root {
     /// An array of accessors.
     #[serde(default)]
     pub accessors: Vec<Accessor>,
-    
+
     /// An array of keyframe animations.
     #[serde(default)]
     pub animations: Vec<Animation>,
 
     /// Metadata about the glTF asset.
     pub asset: Asset,
-    
+
     /// An array of buffers.
     #[serde(default)]
     pub buffers: Vec<Buffer>,
-    
+
     /// An array of buffer views.
     #[serde(default, rename = "bufferViews")]
     pub buffer_views: Vec<buffer::View>,
@@ -59,7 +59,7 @@ pub struct Root {
     /// Optional application specific data.
     #[serde(default)]
     pub extras: Extras,
-    
+
     /// Names of glTF extensions used somewhere in this asset.
     #[serde(default, rename = "extensionsUsed")]
     pub extensions_used: Vec<String>,
@@ -67,39 +67,39 @@ pub struct Root {
     /// Names of glTF extensions required to properly load this asset.
     #[serde(default, rename = "extensionsRequired")]
     pub extensions_required: Vec<String>,
-    
+
     /// An array of cameras.
     #[serde(default)]
     pub cameras: Vec<Camera>,
-    
+
     /// An array of images.
     #[serde(default)]
     pub images: Vec<Image>,
-    
+
     /// An array of materials.
     #[serde(default)]
     pub materials: Vec<Material>,
-    
+
     /// An array of meshes.
     #[serde(default)]
     pub meshes: Vec<Mesh>,
-    
+
     /// An array of nodes.
     #[serde(default)]
     pub nodes: Vec<Node>,
-    
+
     /// An array of samplers.
     #[serde(default)]
     pub samplers: Vec<texture::Sampler>,
-    
+
     /// An array of scenes.
     #[serde(default)]
     pub scenes: Vec<Scene>,
-    
+
     /// An array of skins.
     #[serde(default)]
     pub skins: Vec<Skin>,
-    
+
     /// An array of textures.
     #[serde(default)]
     pub textures: Vec<Texture>,
@@ -171,7 +171,7 @@ impl<T> fmt::Display for Index<T> {
 impl<T: Validate> Validate for Index<T>
     where Root: Get<T>
 {
-    fn validate_minimally<P, R>(&self, root: &Root, path: P, mut report: &mut R)
+    fn validate_minimally<P, R>(&self, root: &Root, path: P, report: &mut R)
         where P: Fn() -> Path, R: FnMut(&Fn() -> Path, Error)
     {
         if root.get(self).is_none() {
