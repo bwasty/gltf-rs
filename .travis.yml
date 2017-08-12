@@ -1,8 +1,8 @@
 language: rust
 
 rust:
-    # - stable
-    # - beta
+    - stable
+    - beta
     - nightly
 
 sudo: false
@@ -27,15 +27,19 @@ addons:
 os:
     - linux
 
-# matrix:
-#     allow_failures:
-#         - rust: nightly
-#         - rust: beta
+matrix:
+    allow_failures:
+        - rust: nightly
+        - rust: beta
 
+# link-dead-code may improve coverage accuracy by preventing dead-code elimination
 env:
   global:
-  - RUSTFLAGS="-C link-dead-code"
+    - RUSTFLAGS="-C link-dead-code"
 
+# Codecov configuration based on https://github.com/codecov/example-rust
+# When new test files are added, add another for-loop with the appropriate name glob
+# If the test accesses external files, you may have to change the working directory
 after_success: |
   wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
   tar xzf master.tar.gz &&

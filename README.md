@@ -6,6 +6,9 @@
    <a href="https://travis-ci.org/alteous/gltf">
       <img src="https://travis-ci.org/alteous/gltf.svg?branch=master" alt="travis">
    </a>
+   <a href="https://codecov.io/gh/alteous/gltf">
+       <img src="https://codecov.io/gh/alteous/gltf/branch/master/graph/badge.svg" alt="Codecov" />
+   </a>
    <a href="https://crates.io/crates/gltf">
       <img src="https://img.shields.io/crates/v/gltf.svg" alt="crates.io">
    </a>
