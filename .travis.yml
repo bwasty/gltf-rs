@@ -14,13 +14,10 @@ script:
 addons:
     apt:
         packages:
-            - libgl1-mesa-dev
             # for kcov
             - libcurl4-openssl-dev
             - libelf-dev
             - libdw-dev
-            - cmake
-            - gcc
             - binutils-dev
             - libiberty-dev
 
