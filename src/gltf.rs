@@ -168,7 +168,7 @@ impl Unvalidated {
     pub fn as_json(&self) -> &json::Root {
         self.0.root.as_json()
     }
-    
+
     /// Skips validation (not recommended).
     pub unsafe fn skip_validation(self) -> Gltf {
         self.0
@@ -182,7 +182,7 @@ impl Unvalidated {
             let json = self.as_json();
             json.validate_minimally(
                 json,
-                || json::Path::new(),
+                json::Path::new,
                 &mut |path, err| errs.push((path(), err)),
             );
         }
@@ -201,12 +201,12 @@ impl Unvalidated {
             let json = self.as_json();
             json.validate_minimally(
                 json,
-                || json::Path::new(),
+                json::Path::new,
                 &mut |path, err| errs.push((path(), err)),
             );
             json.validate_completely(
                 json,
-                || json::Path::new(),
+                json::Path::new,
                 &mut |path, err| errs.push((path(), err)),
             );
         }
@@ -296,7 +296,7 @@ impl Gltf {
             gltf: self,
         }
     }
-    
+
     /// Returns an `Iterator` that visits the nodes of the glTF asset.
     pub fn nodes(&self) -> Nodes {
         Nodes {

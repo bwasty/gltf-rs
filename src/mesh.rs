@@ -267,7 +267,7 @@ impl<'a> Iterator for Attributes<'a> {
         use self::Semantic::*;
         self.iter
             .next()
-            .map(|(ref key, ref index)| {
+            .map(|(key, index)| {
                 let semantic = key.as_ref().unwrap();
                 let accessor = self.gltf.accessors().nth(index.value()).unwrap();
                 match *semantic {

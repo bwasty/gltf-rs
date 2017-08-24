@@ -8,6 +8,7 @@
 // except according to those terms.
 
 #![deny(missing_docs)]
+#![cfg_attr(feature = "cargo-clippy", allow(doc_markdown))]
 
 //! glTF 2.0 loader
 //!
